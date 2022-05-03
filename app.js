@@ -6,6 +6,7 @@ const gridColor = document.querySelector(".color-pick");
 const btnEraser = document.querySelector(".btn-eraser");
 const btnColor = document.querySelector(".color-mode");
 const btnClear = document.querySelector(".btn-clear");
+const btnRainbow = document.querySelector(".rainbow-mode");
 
 btnApply.addEventListener('click', recreateGrid);
 gridLength.addEventListener('change',changeLength);
@@ -13,9 +14,10 @@ gridColor.addEventListener('change',getColor);
 btnEraser.addEventListener('click',getEraser);
 btnColor.addEventListener('click',getColor);
 btnClear.addEventListener('click',recreateGrid);
+btnRainbow.addEventListener('click',randomMode);
 
 
-let color = "black";
+let color = "black"
 
 function createGrid(length) {
     for (let i = 0; i < length ** 2 ; i++) {
@@ -24,8 +26,7 @@ function createGrid(length) {
     }
     gridContainer.style.gridTemplateColumns = `repeat(${length},auto)`;
 
-    let gridBoxs = document.querySelectorAll(".grid-container div");
-    gridBoxs = getGridboxs();
+    const gridBoxs = getGridboxs();
     console.log(gridBoxs);
     gridBoxs.forEach(node => {
         node.addEventListener("mouseenter",paintBoxs);
@@ -59,11 +60,27 @@ function paintBoxs() {
 }
 
 function getColor() {
+    removeRandom();
     color = gridColor.value;
 }
 
 function getEraser() {
+    removeRandom();
     color = 'white';
+}
+
+function randomMode() {
+    const gridBoxs = getGridboxs();
+    gridBoxs.forEach(node => node.addEventListener('mouseenter',randomColor));
+}
+
+function randomColor() {
+    color = `#${Math.round(Math.random()*(2**24)).toString(16)}`;  
+}
+
+function removeRandom() {
+    const gridBoxs = getGridboxs();
+    gridBoxs.forEach(node => node.removeEventListener('mouseenter',randomColor));
 }
 
 createGrid(16);
