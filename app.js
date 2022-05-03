@@ -5,12 +5,14 @@ const gridSize = document.querySelector(".grid-size");
 const gridColor = document.querySelector(".color-pick");
 const btnEraser = document.querySelector(".btn-eraser");
 const btnColor = document.querySelector(".color-mode");
+const btnClear = document.querySelector(".btn-clear");
 
 btnApply.addEventListener('click', recreateGrid);
 gridLength.addEventListener('change',changeLength);
 gridColor.addEventListener('change',getColor);
 btnEraser.addEventListener('click',getEraser);
 btnColor.addEventListener('click',getColor);
+btnClear.addEventListener('click',recreateGrid);
 
 
 let color = "black";
@@ -63,6 +65,7 @@ function getColor() {
 function getEraser() {
     color = 'white';
 }
+
 createGrid(16);
 
 
