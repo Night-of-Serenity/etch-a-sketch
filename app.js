@@ -2,6 +2,7 @@ const gridContainer = document.querySelector(".grid-container");
 const gridLength = document.querySelector(".grid-length");
 const btnApply = document.querySelector(".btn-apply");
 const gridSize = document.querySelector(".grid-size");
+const gridColor = document.querySelector(".color-pick");
 
 btnApply.addEventListener('click', recreateGrid);
 gridLength.addEventListener('change',changeLength);
@@ -44,7 +45,11 @@ function getGridboxs() {
 }
 
 function paintBoxs() {
-    this.style.backgroundColor = `black`;
+    this.style.backgroundColor = `${getColor()}`;
+}
+
+function getColor() {
+    return gridColor.value;
 }
 
 
