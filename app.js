@@ -4,10 +4,13 @@ const btnApply = document.querySelector(".btn-apply");
 const gridSize = document.querySelector(".grid-size");
 const gridColor = document.querySelector(".color-pick");
 const btnEraser = document.querySelector(".btn-eraser");
+const btnColor = document.querySelector(".color-mode");
 
 btnApply.addEventListener('click', recreateGrid);
 gridLength.addEventListener('change',changeLength);
-gridColor.addEventListener('change',changeColor);
+gridColor.addEventListener('change',getColor);
+btnEraser.addEventListener('click',getEraser);
+btnColor.addEventListener('click',getColor);
 
 
 let color = "black";
@@ -53,10 +56,13 @@ function paintBoxs() {
     this.style.backgroundColor = `${color}`;
 }
 
-function changeColor() {
+function getColor() {
     color = gridColor.value;
 }
 
+function getEraser() {
+    color = 'white';
+}
 createGrid(16);
 
 
