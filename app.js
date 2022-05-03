@@ -12,6 +12,13 @@ function createGrid(length) {
         gridContainer.appendChild(box);
     }
     gridContainer.style.gridTemplateColumns = `repeat(${length},auto)`;
+
+    let gridBoxs = document.querySelectorAll(".grid-container div");
+    gridBoxs = getGridboxs();
+    console.log(gridBoxs);
+    gridBoxs.forEach(node => {
+        node.addEventListener("mouseenter",paintBoxs);
+    })    
 }
 
 function removeGrid(container) {
@@ -20,9 +27,7 @@ function removeGrid(container) {
     }
 }
 function getLength() {
-    let length = gridLength.value;
-    console.log(length);
-    return length;
+    return gridLength.value;
 }
 
 function recreateGrid() {
@@ -34,4 +39,16 @@ function changeLength() {
     gridSize.textContent = `${getLength()} x ${getLength()}`;
 }
 
+function getGridboxs() {
+    return document.querySelectorAll(".grid-container>div");
+}
+
+function paintBoxs() {
+    this.style.backgroundColor = `black`;
+}
+
+
 createGrid(16);
+
+
+

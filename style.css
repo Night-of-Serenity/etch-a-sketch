@@ -89,3 +89,7 @@ button {
 .grid-container>div {
     border: black solid 1px;
 }
+
+.grid-container>div:hover {
+    background-color: rgb(197, 200, 201);
+}
