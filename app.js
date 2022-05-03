@@ -3,9 +3,14 @@ const gridLength = document.querySelector(".grid-length");
 const btnApply = document.querySelector(".btn-apply");
 const gridSize = document.querySelector(".grid-size");
 const gridColor = document.querySelector(".color-pick");
+const btnEraser = document.querySelector(".btn-eraser");
 
 btnApply.addEventListener('click', recreateGrid);
 gridLength.addEventListener('change',changeLength);
+gridColor.addEventListener('change',changeColor);
+
+
+let color = "black";
 
 function createGrid(length) {
     for (let i = 0; i < length ** 2 ; i++) {
@@ -45,13 +50,12 @@ function getGridboxs() {
 }
 
 function paintBoxs() {
-    this.style.backgroundColor = `${getColor()}`;
+    this.style.backgroundColor = `${color}`;
 }
 
-function getColor() {
-    return gridColor.value;
+function changeColor() {
+    color = gridColor.value;
 }
-
 
 createGrid(16);
 
