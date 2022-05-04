@@ -6,10 +6,11 @@
 
 body {
     background-color: aquamarine;
+    background-image: linear-gradient(to right,#00bbff, #74efa3);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -28,7 +29,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin: 50px;
+    padding: 50px 20px;
     flex-wrap: wrap;
 }
 
@@ -37,6 +38,7 @@ main {
     flex-flow: column;
     width: 300px;
     justify-content: center;
+    gap: 20px;
     align-items: center;
 }
 
@@ -49,23 +51,6 @@ button {
 
 .color-pick {
     width: 100px;
-    margin-bottom: 20px;
-}
-
-.color-mode {
-    margin-bottom: 20px;
-}
-
-.rainbow-mode {
-    margin-bottom: 20px;
-}
-
-.btn-eraser {
-    margin-bottom: 20px;
-}
-
-.btn-clear {
-    margin-bottom: 40px;
 }
 
 .grid-size {
@@ -73,7 +58,6 @@ button {
 }
 
 .grid-length {
-    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -84,8 +68,4 @@ button {
     display: grid;
     box-shadow: 5px 5px 10px;
     grid-template-columns: repeat(4,auto);
-}
-
-.grid-container>div:hover {
-    background-color: rgb(197, 200, 201);
 }

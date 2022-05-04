@@ -14,7 +14,7 @@ gridColor.addEventListener('change',getColor);
 btnEraser.addEventListener('click',getEraser);
 btnColor.addEventListener('click',getColor);
 btnClear.addEventListener('click',recreateGrid);
-btnRainbow.addEventListener('click',randomMode);
+btnRainbow.addEventListener('click',getRainbow);
 
 
 let color = "black"
@@ -27,7 +27,6 @@ function createGrid(length) {
     gridContainer.style.gridTemplateColumns = `repeat(${length},auto)`;
 
     const gridBoxs = getGridboxs();
-    console.log(gridBoxs);
     gridBoxs.forEach(node => {
         node.addEventListener("mouseenter",paintBoxs);
     })    
@@ -69,7 +68,7 @@ function getEraser() {
     color = 'white';
 }
 
-function randomMode() {
+function getRainbow() {
     const gridBoxs = getGridboxs();
     gridBoxs.forEach(node => node.addEventListener('mouseenter',randomColor));
 }
@@ -82,6 +81,7 @@ function removeRandom() {
     const gridBoxs = getGridboxs();
     gridBoxs.forEach(node => node.removeEventListener('mouseenter',randomColor));
 }
+
 
 createGrid(16);
 
