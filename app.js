@@ -8,17 +8,18 @@ const btnColor = document.querySelector(".color-mode");
 const btnClear = document.querySelector(".btn-clear");
 const btnRainbow = document.querySelector(".rainbow-mode");
 
-btnApply.addEventListener('click', recreateGrid);
+btnApply.addEventListener('click', resetGrid);
 gridLength.addEventListener('change',changeLength);
 gridColor.addEventListener('change',getColor);
 btnEraser.addEventListener('click',getEraser);
 btnColor.addEventListener('click',getColor);
-btnClear.addEventListener('click',recreateGrid);
+btnClear.addEventListener('click',resetGrid);
 btnRainbow.addEventListener('click',getRainbow);
 
 
 let color = "black"
 
+// Create drawing grid
 function createGrid(length) {
     for (let i = 0; i < length ** 2 ; i++) {
         const box = document.createElement("div");
@@ -32,52 +33,62 @@ function createGrid(length) {
     })    
 }
 
+// Remove old drawing grid
 function removeGrid(container) {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 }
+
 function getLength() {
     return gridLength.value;
 }
 
-function recreateGrid() {
+function resetGrid() {
     removeGrid(gridContainer);
     createGrid(getLength());
 }
 
+// Update text for grid size on webpage
 function changeLength() {
     gridSize.textContent = `${getLength()} x ${getLength()}`;
 }
 
+// Get nodelist of all grid
 function getGridboxs() {
     return document.querySelectorAll(".grid-container>div");
 }
 
+// Painting grid
 function paintBoxs() {
     this.style.backgroundColor = `${color}`;
 }
 
+// Color picking mode
 function getColor() {
-    removeRandom();
+    removeRainbow(); // Cancel rainbow random color mode
     color = gridColor.value;
 }
 
+// Eraser mode
 function getEraser() {
-    removeRandom();
+    removeRainbow(); // Cancel rainbow random color mode
     color = 'white';
 }
 
+// Rainbow random color drawing mode
 function getRainbow() {
     const gridBoxs = getGridboxs();
     gridBoxs.forEach(node => node.addEventListener('mouseenter',randomColor));
 }
 
+// Generate random hexadecimal color code
 function randomColor() {
-    color = `#${Math.round(Math.random()*(2**24)).toString(16)}`;  
+    color = `#${Math.round(Math.random()*(0xffffff)).toString(16)}`;  
 }
 
-function removeRandom() {
+// Cancel rainbow mode
+function removeRainbow() {
     const gridBoxs = getGridboxs();
     gridBoxs.forEach(node => node.removeEventListener('mouseenter',randomColor));
 }
